@@ -36,6 +36,7 @@ KEY_NAME="${KEY_NAME:-$DEFAULT_KEY_NAME}"
 START_ALL_PATHS="${START_ALL_PATHS:-true}"
 SPECIFIC_PATH="${SPECIFIC_PATH:-}"
 NO_START="${NO_START:-false}"
+LIST_PATHS="${LIST_PATHS:-false}"
 
 # Function to restore keys
 restore_keys() {
@@ -95,7 +96,10 @@ main() {
 
     restore_keys
     check_balances
-    list_paths
+
+    if [ "$LIST_PATHS" = "true" ]; then
+        list_paths
+    fi
 
     log_success "=== Initialization Complete ==="
 
