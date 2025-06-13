@@ -1,0 +1,28 @@
+services:
+  relayer:
+    build: .
+    container_name: cosmos-relayer
+    restart: unless-stopped
+    volumes:
+      - .keys:/home/relayer/.keys
+      - ./config.yaml:/home/relayer/.relayer/config/config.yaml
+    environment:
+      # Key directory
+      KEY_DIR: "/home/relayer/.keys"
+
+      # Key name to use for all chains
+      KEY_NAME: "relayer_key"
+
+      # Whether to start all paths or specific path
+      START_ALL_PATHS: "true"
+      # SPECIFIC_PATH: "cosmoshub-osmosis"
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "0.5"
+        reservations:
+          memory: 512M
+          cpus: "0.25"
