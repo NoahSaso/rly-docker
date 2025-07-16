@@ -53,6 +53,7 @@ restore_keys() {
 
         log_info "Restoring key for chain: $chain"
         rly keys restore "$chain" "$KEY_NAME" "$(cat $chain_key_file)"
+        rly keys list "$chain"
     done
 }
 
